@@ -1,0 +1,6 @@
+*checkpoint*
+*.pyc
+*.csv
+*.txt
+*.wav
+data/*
