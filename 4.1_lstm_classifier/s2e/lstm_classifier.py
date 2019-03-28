@@ -1,4 +1,5 @@
 import torch
+import pickle
 import numpy as np
 import torch.nn as nn
 from torch import optim
@@ -43,6 +44,7 @@ if __name__ == '__main__':
     train_batches = load_data()
     test_pairs = load_data(test=True)
 
+    best_acc = 0
     for epoch in range(config['n_epochs']):
         losses = []
         for batch in train_batches:
@@ -81,7 +83,13 @@ if __name__ == '__main__':
             # Get results
             # plot_confusion_matrix(targets, predictions,
             #                       classes=emotion_dict.keys())
-            acc, f1_score = evaluate(targets, predictions)
+            performance = evaluate(targets, predictions)
+            if performance['acc'] > best_acc:
+                # save model and results
+                torch.save({
+                    'model': model.state_dict(),
+                    'optimizer': optimizer.state_dict()
+                    }, 'runs/best_model.pth')
 
-        print('Mean Training Loss: {:.3f} | Mean Accuracy: {:.3f} | Mean F1-Score: {:.3f}'.format(
-            np.mean(losses), acc, f1_score))
+                with open('results/best_performance.pkl', 'wb') as f:
+                    pickle.dump(performance, f)

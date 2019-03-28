@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from config import model_config as config
 
-from sklearn.metrics import confusion_matrix, accuracy_score, f1_score
+from sklearn.metrics import confusion_matrix, accuracy_score, f1_score, precision_score, recall_score
 
 import itertools
 import matplotlib.pyplot as plt
@@ -32,8 +32,12 @@ def load_data(batched=True, test=False):
 
 
 def evaluate(targets, predictions):
-    return accuracy_score(targets, predictions), \
-           f1_score(targets, predictions, average='macro')
+    performance = {
+        'acc': accuracy_score(targets, predictions),
+        'f1': f1_score(targets, predictions, average='macro'),
+        'precision': precision_score(targets, predictions, average='macro'),
+        'recall': recall_score(targets, predictions, average='macro')}
+    return performance
 
 
 def plot_confusion_matrix(targets, predictions, classes,
