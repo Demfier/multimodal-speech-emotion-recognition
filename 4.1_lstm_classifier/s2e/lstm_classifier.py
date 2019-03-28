@@ -17,15 +17,20 @@ class LSTMClassifier(nn.Module):
         self.input_dim = config['input_dim']
         self.hidden_dim = config['hidden_dim']
         self.output_dim = config['output_dim']
+        self.bidirectional = config['bidirectional']
 
         self.rnn = nn.LSTM(self.input_dim, self.hidden_dim, bias=True,
-                           num_layers=2, dropout=self.dropout)
+                           num_layers=2, dropout=self.dropout,
+                           bidirectional=self.bidirectional)
         self.out = nn.Linear(self.hidden_dim, self.output_dim)
         self.softmax = F.softmax
 
     def forward(self, input_seq):
         # input_seq =. [1, batch_size, input_size]
         rnn_output, (hidden, _) = self.rnn(input_seq)
+        if self.bidirectional:  # sum outputs from the two directions
+            rnn_output = rnn_output[:, :, :self.hidden_dim] +\
+                        rnn_output[:, :, self.hidden_dim:]
         class_scores = F.softmax(self.out(rnn_output[0]), dim=1)
         return class_scores
 

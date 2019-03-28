@@ -1,5 +1,6 @@
 model_config = {
     'gpu': 1,
+    'bidirectional': True,
     'input_dim': 8,
     'hidden_dim': 50,
     'output_dim': 6,  # number of classes
