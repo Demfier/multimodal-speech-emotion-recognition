@@ -85,6 +85,7 @@ if __name__ == '__main__':
             #                       classes=emotion_dict.keys())
             performance = evaluate(targets, predictions)
             if performance['acc'] > best_acc:
+                best_acc = performance['acc']
                 # save model and results
                 torch.save({
                     'model': model.state_dict(),
