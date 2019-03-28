@@ -32,12 +32,13 @@ class LSTMClassifier(nn.Module):
 if __name__ == '__main__':
     emotion_dict = {'ang': 0, 'hap': 1, 'sad': 2, 'fea': 3, 'sur': 4, 'neu': 5}
 
-    model = LSTMClassifier(config)
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'])
-
     device = 'cuda:{}'.format(config['gpu']) if \
              torch.cuda.is_available() else 'cpu'
+
+    model = LSTMClassifier(config)
+    model = model.to(device)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'])
 
     train_batches = load_data()
     test_pairs = load_data(test=True)
@@ -54,6 +55,8 @@ if __name__ == '__main__':
             optimizer.zero_grad()
 
             predictions = model(inputs)
+            predictions = predictions.to(device)
+
             loss = criterion(predictions, targets)
             loss.backward()
             optimizer.step()
@@ -64,9 +67,16 @@ if __name__ == '__main__':
         with torch.no_grad():
             inputs = test_pairs[0].unsqueeze(0)
             targets = test_pairs[1]
+
+            inputs = inputs.to(device)
+            targets = targets.to(device)
+
             predictions = torch.argmax(model(inputs), dim=1)  # take argmax to get class id
-            targets = list(targets)
-            predictions = list(predictions)
+            predictions = predictions.to(device)
+
+            # evaluate on cpu
+            targets = np.array(targets.cpu())
+            predictions = np.array(predictions.cpu())
 
             # Get results
             # plot_confusion_matrix(targets, predictions,
