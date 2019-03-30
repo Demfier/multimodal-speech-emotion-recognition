@@ -7,6 +7,6 @@ model_config = {
     'dropout': 0.2,
     'learning_rate': 0.01,
     'batch_size': 1567,  # carefully chosen
-    'n_epochs': 45000,
+    'n_epochs': 55000,
     'model_code': 'basic_lstm'
 }
