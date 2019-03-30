@@ -4,9 +4,9 @@ import numpy as np
 import torch.nn as nn
 from torch import optim
 import torch.nn.functional as F
-from utils import load_data, evaluate, plot_confusion_matrix
+from .utils import load_data, evaluate, plot_confusion_matrix
 
-from config import model_config as config
+from .config import model_config as config
 
 
 class LSTMClassifier(nn.Module):
@@ -95,7 +95,7 @@ if __name__ == '__main__':
                 torch.save({
                     'model': model.state_dict(),
                     'optimizer': optimizer.state_dict()
-                    }, 'runs/best_model.pth')
+                    }, 'runs/{}-best_model.pth'.format(config['model_code']))
 
-                with open('results/best_performance.pkl', 'wb') as f:
+                with open('results/{}-best_performance.pkl'.format(config['model_code']), 'wb') as f:
                     pickle.dump(performance, f)

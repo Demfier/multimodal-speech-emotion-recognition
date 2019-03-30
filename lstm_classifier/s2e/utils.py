@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 import pandas as pd
-from config import model_config as config
+from .config import model_config as config
 
 from sklearn.metrics import confusion_matrix, accuracy_score, f1_score, precision_score, recall_score
 
@@ -9,10 +9,10 @@ import itertools
 import matplotlib.pyplot as plt
 
 
-def load_data(batched=True, test=False):
+def load_data(batched=True, test=False, file_dir='../../data/s2e/'):
     bs = config['batch_size']
     ftype = 'test' if test else 'train'
-    df = pd.read_csv('../../data/s2e/modified_df_{}.csv'.format(ftype))
+    df = pd.read_csv('{}modified_df_{}.csv'.format(file_dir, ftype))
     # 0th index in label, rest all are features
     data = (np.array(df[df.columns[1:]]), np.array(df[df.columns[0]]))
     if test or not batched:
