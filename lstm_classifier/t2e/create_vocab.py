@@ -39,6 +39,8 @@ def create_vocab(file_dir='../../data/t2e/'):
     print("Total words in vocab:  {}".format(vocab.size))
     with open('vocab.pkl', 'wb') as f:
         pickle.dump(vocab, f)
+
+    print('Generating word embeddings')
     return vocab
 
 

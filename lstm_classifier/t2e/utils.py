@@ -1,13 +1,58 @@
+import os
 import torch
 import pickle
+import gensim
 import numpy as np
 import pandas as pd
 from config import model_config as config
+from gensim.scripts.glove2word2vec import glove2word2vec
 
 from sklearn.metrics import confusion_matrix, accuracy_score, f1_score, precision_score, recall_score
 
 import itertools
 import matplotlib.pyplot as plt
+
+
+def generate_word_embeddings(vocab):
+    if not os.path.exists('{}gensim.glove.6B.{}d.txt'.format(
+            config['embeddings_dir'], config['embedding_dim'])):
+        glove2word2vec(glove_input_file='{}glove.6B.{}d.txt'.format(
+            config['embeddings_dir'], config['embedding_dim']),
+            word2vec_output_file='{}gensim.glove.6B.{}d.txt'.format(
+            config['embeddings_dir'], config['embedding_dim']))
+
+    embeddings_all = gensim.models.KeyedVectors.load_word2vec_format(
+        '{}gensim.glove.6B.{}d.txt'.format(config['embeddings_dir'],
+                                           config['embedding_dim']))
+    print('Loaded original embeddings')
+
+    # initialize word embeddings matrix
+    combined_word_embeddings = np.zeros((vocab.size,
+                                         config['embedding_dim']))
+    for index, word in vocab.index2word.items():
+        try:
+            if index < 4:  # deal with special tokens
+                combined_word_embeddings[index] = np.random.normal(
+                    size=(config['embedding_dim'], ))
+                continue
+            combined_word_embeddings[index] = embeddings_all[word]
+        except KeyError as e:
+            print('KeyError triggered for {}'.format(word))
+            combined_word_embeddings[index] = np.random.normal(
+                size=(config['embedding_dim'], ))
+    print('Created combined + filtered embeddings.')
+    with open('{}saved_{}d_word_embeddings.pkl'.format(
+            config['embeddings_dir'], config['embedding_dim']), 'wb') as f:
+        pickle.dump(combined_word_embeddings, f)
+    combined_word_embeddings = torch.from_numpy(combined_word_embeddings).float()
+    return combined_word_embeddings
+
+
+def load_word_embeddings():
+    with open('{}saved_{}d_word_embeddings.pkl'.format(
+            config['embeddings_dir'], config['embedding_dim']), 'rb') as f:
+        combined_word_embeddings = pickle.load(f)
+        return torch.from_numpy(combined_word_embeddings).float()
 
 
 def zero_padding(l, fillvalue=config['<PAD>']):

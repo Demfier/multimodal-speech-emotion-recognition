@@ -1,4 +1,6 @@
+import torch
 import pickle
+import gensim
 from create_vocab import create_vocab
 
 model_config = {
@@ -7,18 +9,22 @@ model_config = {
     '<SOS>': 1,
     '<EOS>': 2,
     '<UNK>': 3,
-    'n_layers': 3,
+    'n_layers': 2,
     'dropout': 0.2,
     'output_dim': 6,  # number of classes
-    'hidden_dim': 50,
+    'hidden_dim': 256,
     'n_epochs': 45000,
-    'batch_size': 200,  # carefully chosen
-    'embedding_dim': 50,
-    'learning_rate': 0.001,
+    'batch_size': 128,  # carefully chosen
+    'embedding_dim': 100,  # 50/100/200/300
     'bidirectional': True,
+    'learning_rate': 0.0001,
+    'model_code': 'bi_lstm',
     'max_sequence_length': 20,
-    'model_code': 'bi_lstm'
+    'embeddings_dir': 'embeddings/'
 }
+
+# Note: keep this line here, always
+from utils import generate_word_embeddings
 
 
 def set_dynamic_hparams():
@@ -27,6 +33,7 @@ def set_dynamic_hparams():
             vocab = pickle.load(f)
     except FileNotFoundError as e:
         vocab = create_vocab()
+        generate_word_embeddings(vocab)
 
     model_config['vocab_size'] = vocab.size
     model_config['vocab_path'] = 'vocab.pkl'

@@ -4,9 +4,9 @@ import numpy as np
 import torch.nn as nn
 from torch import optim
 import torch.nn.functional as F
-from utils import load_data, evaluate, plot_confusion_matrix
 
 from config import model_config as config
+from utils import load_data, evaluate, load_word_embeddings, plot_confusion_matrix
 
 
 class LSTMClassifier(nn.Module):
@@ -21,7 +21,8 @@ class LSTMClassifier(nn.Module):
         self.embedding_dim = config['embedding_dim']
         self.bidirectional = config['bidirectional']
 
-        self.embedding = nn.Embedding(self.vocab_size, self.embedding_dim)
+        self.embedding = nn.Embedding.from_pretrained(
+            load_word_embeddings(), freeze=False)
 
         self.rnn = nn.LSTM(self.embedding_dim, self.hidden_dim, bias=True,
                            num_layers=self.n_layers, dropout=self.dropout,
@@ -35,8 +36,6 @@ class LSTMClassifier(nn.Module):
         # input_seq =. [max_seq_len, batch_size]
         embedded = self.embedding(input_seq)
 
-        packed = torch.nn.utils.rnn.pack_padded_sequence(embedded,
-                                                         input_lengths)
         rnn_output, (hidden, _) = self.rnn(embedded)
         rnn_output = torch.cat((rnn_output[-1, :, :self.hidden_dim],
                                 rnn_output[0, :, self.hidden_dim:]), dim=1)
@@ -99,7 +98,6 @@ if __name__ == '__main__':
             # plot_confusion_matrix(targets, predictions,
             #                       classes=emotion_dict.keys())
             performance = evaluate(targets, predictions)
-            print(performance)
             if performance['acc'] > best_acc:
                 best_acc = performance['acc']
                 # save model and results
