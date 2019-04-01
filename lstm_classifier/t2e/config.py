@@ -14,7 +14,7 @@ model_config = {
     'n_epochs': 45000,
     'batch_size': 1567,  # carefully chosen
     'embedding_dim': 256,
-    'learning_rate': 0.0001,
+    'learning_rate': 0.001,
     'bidirectional': True,
     'max_sequence_length': 20,
     'model_code': 'bi_lstm'
