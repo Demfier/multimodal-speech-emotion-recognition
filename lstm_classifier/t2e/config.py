@@ -12,18 +12,18 @@ model_config = {
     'n_layers': 2,
     'dropout': 0.2,
     'output_dim': 6,  # number of classes
-    'hidden_dim': 256,
+    'hidden_dim': 500,
     'n_epochs': 45000,
     'batch_size': 128,  # carefully chosen
-    'embedding_dim': 100,  # 50/100/200/300
+    'embedding_dim': 200,  # 50/100/200/300
     'bidirectional': True,
     'learning_rate': 0.0001,
-    'model_code': 'bi_lstm',
+    'model_code': 'bi_lstm_2_layer',
     'max_sequence_length': 20,
     'embeddings_dir': 'embeddings/'
 }
 
-# Note: keep this line here, always
+
 from utils import generate_word_embeddings
 
 
