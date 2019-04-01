@@ -10,10 +10,10 @@ model_config = {
     'n_layers': 3,
     'dropout': 0.2,
     'output_dim': 6,  # number of classes
-    'hidden_dim': 256,
+    'hidden_dim': 50,
     'n_epochs': 45000,
-    'batch_size': 1567,  # carefully chosen
-    'embedding_dim': 256,
+    'batch_size': 200,  # carefully chosen
+    'embedding_dim': 50,
     'learning_rate': 0.001,
     'bidirectional': True,
     'max_sequence_length': 20,

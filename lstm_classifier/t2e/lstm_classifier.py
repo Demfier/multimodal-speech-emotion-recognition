@@ -35,8 +35,8 @@ class LSTMClassifier(nn.Module):
         # input_seq =. [max_seq_len, batch_size]
         embedded = self.embedding(input_seq)
 
-        # packed = torch.nn.utils.rnn.pack_padded_sequence(embedded,
-        #                                                  input_lengths)
+        packed = torch.nn.utils.rnn.pack_padded_sequence(embedded,
+                                                         input_lengths)
         rnn_output, (hidden, _) = self.rnn(embedded)
         rnn_output = torch.cat((rnn_output[-1, :, :self.hidden_dim],
                                 rnn_output[0, :, self.hidden_dim:]), dim=1)
@@ -99,6 +99,7 @@ if __name__ == '__main__':
             # plot_confusion_matrix(targets, predictions,
             #                       classes=emotion_dict.keys())
             performance = evaluate(targets, predictions)
+            print(performance)
             if performance['acc'] > best_acc:
                 best_acc = performance['acc']
                 # save model and results
