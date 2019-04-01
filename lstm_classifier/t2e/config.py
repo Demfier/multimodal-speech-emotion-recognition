@@ -7,16 +7,17 @@ model_config = {
     '<SOS>': 1,
     '<EOS>': 2,
     '<UNK>': 3,
-    'input_dim': 8,
+    'n_layers': 3,
     'dropout': 0.2,
     'output_dim': 6,  # number of classes
-    'hidden_dim': 50,
+    'hidden_dim': 256,
     'n_epochs': 45000,
     'batch_size': 1567,  # carefully chosen
-    'embedding_dim': 50,
-    'learning_rate': 0.01,
-    'bidirectional': False,
-    'model_code': 'basic_lstm'
+    'embedding_dim': 256,
+    'learning_rate': 0.0001,
+    'bidirectional': True,
+    'max_sequence_length': 20,
+    'model_code': 'bi_lstm'
 }
 
 

@@ -1,12 +1,13 @@
 import torch
+import sys
 import pickle
 import numpy as np
 import torch.nn as nn
 from torch import optim
 import torch.nn.functional as F
-from .utils import load_data, evaluate, plot_confusion_matrix
+from utils import load_data, evaluate, plot_confusion_matrix
 
-from .config import model_config as config
+from config import model_config as config
 
 
 class LSTMClassifier(nn.Module):
@@ -67,7 +68,6 @@ if __name__ == '__main__':
             loss = criterion(predictions, targets)
             loss.backward()
             optimizer.step()
-
             losses.append(loss.item())
 
         # evaluate

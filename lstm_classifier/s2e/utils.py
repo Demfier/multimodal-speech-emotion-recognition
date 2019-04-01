@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 import pandas as pd
-from .config import model_config as config
+from config import model_config as config
 
 from sklearn.metrics import confusion_matrix, accuracy_score, f1_score, precision_score, recall_score
 

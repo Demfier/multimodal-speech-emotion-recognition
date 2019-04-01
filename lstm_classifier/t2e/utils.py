@@ -37,19 +37,6 @@ def input_var(l, vocab):
     return pad_var, lengths
 
 
-# Returns padded target sequence tensor, padding mask, and max target length
-def output_var(l, vocab):
-    indexes_batch = [indexes_from_sentence(vocab, sentence) for sentence in l]
-    for idx, indexes in enumerate(indexes_batch):
-        indexes_batch[idx] = indexes_batch[idx] + [config['<EOS>']]
-    max_target_len = max([len(indexes) for indexes in indexes_batch])
-    pad_list = zero_padding(indexes_batch)
-    mask = binary_matrix(pad_list)
-    mask = torch.ByteTensor(mask)
-    pad_var = torch.LongTensor(pad_list)
-    return pad_var, mask, max_target_len
-
-
 def indexes_from_sentence(vocab, sentence):
     indexes = []
     for word in sentence.strip().split():
@@ -57,11 +44,7 @@ def indexes_from_sentence(vocab, sentence):
             indexes.append(vocab.word2index[word])
         except KeyError as e:
             indexes.append(config['<UNK>'])
-    return np.array(indexes)
-
-
-def indexes_from_sentences(vocab, sentences):
-    return np.array([indexes_from_sentence(vocab, sentence) for sentence in sentences])
+    return indexes[:config['max_sequence_length']]
 
 
 def load_data(batched=True, test=False, file_dir='../../data/t2e/'):
@@ -79,6 +62,15 @@ def load_data(batched=True, test=False, file_dir='../../data/t2e/'):
     data.sort(key=lambda x: len(x[0].split()), reverse=True)
 
     n_iters = len(data) // bs
+
+    if test:
+        input_batch = []
+        output_batch = []
+        for e in data:
+            input_batch.append(e[0])
+            output_batch.append(e[1])
+        inp, lengths = input_var(input_batch, vocab)
+        return [inp, lengths, torch.LongTensor(output_batch)]
 
     batches = []
     for i in range(1, n_iters + 1):

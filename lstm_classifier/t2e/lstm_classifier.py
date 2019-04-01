@@ -14,7 +14,7 @@ class LSTMClassifier(nn.Module):
     def __init__(self, config):
         super(LSTMClassifier, self).__init__()
         self.dropout = config['dropout']
-        self.input_dim = config['input_dim']
+        self.n_layers = config['n_layers']
         self.hidden_dim = config['hidden_dim']
         self.output_dim = config['output_dim']
         self.vocab_size = config['vocab_size']
@@ -24,24 +24,27 @@ class LSTMClassifier(nn.Module):
         self.embedding = nn.Embedding(self.vocab_size, self.embedding_dim)
 
         self.rnn = nn.LSTM(self.embedding_dim, self.hidden_dim, bias=True,
-                           num_layers=2, dropout=self.dropout,
+                           num_layers=self.n_layers, dropout=self.dropout,
                            bidirectional=self.bidirectional)
 
-        self.out = nn.Linear(self.hidden_dim, self.output_dim)
+        # num_layers x num_directions x hidden_dim
+        self.flat_hidden_dim = self.n_layers * (
+            2 if self.bidirectional else 1) * self.hidden_dim
+        self.out = nn.Linear(self.flat_hidden_dim, self.output_dim)
         self.softmax = F.softmax
 
     def forward(self, input_seq, input_lengths):
+        max_seq_len, bs = input_seq.size()
         # input_seq =. [max_seq_len, batch_size]
         embedded = self.embedding(input_seq)
-        packed = torch.nn.utils.rnn.pack_padded_sequence(embedded,
-                                                         input_lengths)
-        rnn_output, (hidden, _) = self.rnn(packed)
-        rnn_output, _ = torch.nn.utils.rnn.pad_packed_sequence(rnn_output)
-        if self.bidirectional:  # sum outputs from the two directions
-            rnn_output = rnn_output[:, :, :self.hidden_dim] +\
-                        rnn_output[:, :, self.hidden_dim:]
 
-        class_scores = F.softmax(self.out(rnn_output[0]), dim=1)
+        # packed = torch.nn.utils.rnn.pack_padded_sequence(embedded,
+        #                                                  input_lengths)
+        rnn_output, (hidden, _) = self.rnn(embedded)
+
+        # sum hidden states
+        class_scores = F.softmax(self.out(
+            hidden.view(bs, self.flat_hidden_dim)), dim=1)
         return class_scores
 
 
@@ -53,11 +56,11 @@ if __name__ == '__main__':
 
     model = LSTMClassifier(config)
     model = model.to(device)
-    criterion = nn.CrossEntropyLoss()
+    criterion = nn.NLLLoss()
     optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'])
 
     train_batches = load_data()
-    test_batches = load_data(test=True)
+    test_batch = load_data(test=True)
 
     best_acc = 0
     for epoch in range(config['n_epochs']):
@@ -67,7 +70,6 @@ if __name__ == '__main__':
             inputs = inputs.to(device)
             input_lengths = input_lengths.to(device)
             targets = targets.to(device)
-            print(inputs.size(), input_lengths.size())
 
             model.zero_grad()
             optimizer.zero_grad()
@@ -82,8 +84,7 @@ if __name__ == '__main__':
             losses.append(loss.item())
 
         # evaluate
-        for test_batch in test_batches:
-            model.eval()
+        with torch.no_grad():
             inputs, lengths, targets = test_batch
 
             inputs = inputs.to(device)
