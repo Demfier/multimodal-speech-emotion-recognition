@@ -15,14 +15,14 @@ class LSTMClassifier(nn.Module):
     def __init__(self, config):
         super(LSTMClassifier, self).__init__()
         self.n_layers = config['n_layers']
+        self.dropout = config['dropout'] if self.n_layers > 1 else 0
         self.input_dim = config['input_dim']
         self.hidden_dim = config['hidden_dim']
         self.output_dim = config['output_dim']
         self.bidirectional = config['bidirectional']
-        self.dropout = config['dropout'] if self.n_layers > 1 else 0
 
         self.rnn = nn.LSTM(self.input_dim, self.hidden_dim, bias=True,
-                           num_layers=2, dropout=self.dropout,
+                           num_layers=self.n_layers, dropout=self.dropout,
                            bidirectional=self.bidirectional)
         self.out = nn.Linear(self.hidden_dim, self.output_dim)
         self.softmax = F.softmax
@@ -91,8 +91,8 @@ if __name__ == '__main__':
             #                       classes=emotion_dict.keys())
             performance = evaluate(targets, predictions)
             if performance['acc'] > best_acc:
-                best_acc = performance['acc']
                 print(performance)
+                best_acc = performance['acc']
                 # save model and results
                 torch.save({
                     'model': model.state_dict(),
