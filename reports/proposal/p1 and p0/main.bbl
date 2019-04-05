@@ -1,0 +1,58 @@
+\begin{thebibliography}{10}
+
+\bibitem{busso2008iemocap}
+C.~Busso, M.~Bulut, C.-C. Lee, A.~Kazemzadeh, E.~Mower, S.~Kim, J.~N. Chang,
+  S.~Lee, and S.~S. Narayanan, ``Iemocap: Interactive emotional dyadic motion
+  capture database,'' {\em Language resources and evaluation}, vol.~42, no.~4,
+  p.~335, 2008.
+
+\bibitem{jackson2014surrey}
+P.~Jackson and S.~Haq, ``Surrey audio-visual expressed emotion (savee)
+  database,'' {\em University of Surrey: Guildford, UK}, 2014.
+
+\bibitem{ververidis2006emotional}
+D.~Ververidis and C.~Kotropoulos, ``Emotional speech recognition: Resources,
+  features, and methods,'' {\em Speech communication}, vol.~48, no.~9,
+  pp.~1162--1181, 2006.
+
+\bibitem{sondhi1968new}
+M.~Sondhi, ``New methods of pitch extraction,'' {\em IEEE Transactions on audio
+  and electroacoustics}, vol.~16, no.~2, pp.~262--266, 1968.
+
+\bibitem{teager1990evidence}
+H.~Teager and S.~Teager, ``Evidence for nonlinear sound production mechanisms
+  in the vocal tract,'' in {\em Speech production and speech modelling},
+  pp.~241--261, Springer, 1990.
+
+\bibitem{zhou2001nonlinear}
+G.~Zhou, J.~H. Hansen, and J.~F. Kaiser, ``Nonlinear feature based
+  classification of speech under stress,'' {\em IEEE Transactions on speech and
+  audio processing}, vol.~9, no.~3, pp.~201--216, 2001.
+
+\bibitem{fitzgerald2010harmonic}
+D.~Fitzgerald, ``Harmonic/percussive separation using median filtering,'' 2010.
+
+\bibitem{sutskever2014sequence}
+I.~Sutskever, O.~Vinyals, and Q.~V. Le, ``Sequence to sequence learning with
+  neural networks,'' in {\em Advances in neural information processing
+  systems}, pp.~3104--3112, 2014.
+
+\bibitem{bahdanau2014neural}
+D.~Bahdanau, K.~Cho, and Y.~Bengio, ``Neural machine translation by jointly
+  learning to align and translate,'' {\em arXiv preprint arXiv:1409.0473},
+  2014.
+
+\bibitem{liu2018efficient}
+Z.~Liu, Y.~Shen, V.~B. Lakshminarasimhan, P.~P. Liang, A.~Zadeh, and L.-P.
+  Morency, ``Efficient low-rank multimodal fusion with modality-specific
+  factors,'' {\em arXiv preprint arXiv:1806.00064}, 2018.
+
+\bibitem{hochreiter1997long}
+S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' {\em Neural
+  computation}, vol.~9, no.~8, pp.~1735--1780, 1997.
+
+\bibitem{radford2017learning}
+A.~Radford, R.~Jozefowicz, and I.~Sutskever, ``Learning to generate reviews and
+  discovering sentiment,'' {\em arXiv preprint arXiv:1704.01444}, 2017.
+
+\end{thebibliography}

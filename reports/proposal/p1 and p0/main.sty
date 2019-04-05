@@ -1,0 +1,10 @@
+\def\textofBIB#1{\gdef\@textofBIB{#1}}  \textofBIB{References}
+\def\thebibliography#1{\chapter*{\@textofBIB\@mkboth{}{}}
+ \addcontentsline{toc}{chapter}{\protect\@textofBIB}
+ \list
+ {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+ \def\newblock{\hskip .11em plus .33em minus .07em}
+ \sloppy\clubpenalty4000\widowpenalty4000
+ \sfcode`\.=1000\relax}
