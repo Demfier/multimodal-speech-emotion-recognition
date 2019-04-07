@@ -30,7 +30,7 @@ All the experiments have been tested using the following libraries:
 4. Run `4_prepare_data.ipynb` to preprocess and prepare audio + video data for experiments
 5. It is recommended to train `LSTMClassifier` before running any other experiments for easy comparsion with other models later on:
   - Change `config.py` for any of the experiment settings (`s2e/t2e/combined`) if you want
-  - Run `python lstm_classifier.py` from any of the any of the experiment mode to train an LSTM classifier for that respective model
+  - Run `python lstm_classifier.py` from the corresponding experiment mode's folder inside `lstm_classifier` to train an LSTM classifier for that respective mode
 6. Run `5_audio_classification.ipynb` to train ML classifiers for audio
 7. Run `5.1_sentence_classification.ipynb` to train ML classifiers for text
 8. Run `5.2_combined_classification.ipynb` to train ML classifiers for audio+text
@@ -90,4 +90,4 @@ MDRE (4-class) | **75.3** | - | 71.8 | -
 E1 (4-class) | 70.3 | 67.5 | **73.2** | 65.5
 **E2** | 70.1 | **71.8** | 72.9 | **71.5**
 
-For a more detailed analysis, please refer to the [report](report/Final%20Report.pdf)
+For more details, please refer to the [report](report/Final%20Report.pdf)
