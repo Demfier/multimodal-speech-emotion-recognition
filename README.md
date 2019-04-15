@@ -8,10 +8,10 @@ The hand-crafted feature vectors obtained are used to train two types of models:
 1. ML-based: Logistic Regression, SVMs, Random Forest, eXtreme Gradient Boosting and Multinomial Naive-Bayes.
 2. DL-based: Multi-Layer Perceptron, LSTM Classifier
 
-This project was carried as a course project for the course CS 698 - Computational Audio taught by [Prof. Richard Mann](https://cs.uwaterloo.ca/~mannr/) at the University of Waterloo. For a more detailed explanation, please check the [report](report/multimodal_speech_emotion_recognition_and_ambiguity_resolution.pdf).
+This project was carried as a course project for the course CS 698 - Computational Audio taught by [Prof. Richard Mann](https://cs.uwaterloo.ca/~mannr/) at the University of Waterloo. For a more detailed explanation, please check the [report](https://arxiv.org/abs/1904.06022).
 
 ## Datasets
-The [IEMOCAP](https://link.springer.com/content/pdf/10.1007%2Fs10579-008-9076-6.pdf) dataset was used for all the experiments in this work. Please refer to the [report](report/multimodal_speech_emotion_recognition_and_ambiguity_resolution.pdf) for a detailed explanation of pre-processing steps applied to the dataset.
+The [IEMOCAP](https://link.springer.com/content/pdf/10.1007%2Fs10579-008-9076-6.pdf) dataset was used for all the experiments in this work. Please refer to the [report](https://arxiv.org/abs/1904.06022) for a detailed explanation of pre-processing steps applied to the dataset.
 
 ## Requirements
 All the experiments have been tested using the following libraries:
@@ -90,4 +90,4 @@ MDRE (4-class) | **75.3** | - | 71.8 | -
 E1 (4-class) | 70.3 | 67.5 | **73.2** | 65.5
 **E2** | 70.1 | **71.8** | 72.9 | **71.5**
 
-For more details, please refer to the [report](report/multimodal_speech_emotion_recognition_and_ambiguity_resolution.pdf)
+For more details, please refer to the [report](https://arxiv.org/abs/1904.06022)
