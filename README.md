@@ -35,7 +35,7 @@ All the experiments have been tested using the following libraries:
 7. Run `5.1_sentence_classification.ipynb` to train ML classifiers for text
 8. Run `5.2_combined_classification.ipynb` to train ML classifiers for audio+text
 
-**Note:** Make sure to include correct model paths the notebooks as not everything is relative right now and it needs some refactoring
+**Note:** Make sure to include correct model paths in the notebooks as not everything is relative right now and it needs some refactoring
 
 ## Results
 Accuracy, F-score, Precision and Recall has been reported for the different experiments.
@@ -91,3 +91,24 @@ E1 (4-class) | 70.3 | 67.5 | **73.2** | 65.5
 **E2** | 70.1 | **71.8** | 72.9 | **71.5**
 
 For more details, please refer to the [report](https://arxiv.org/abs/1904.06022)
+
+## Citation
+If you find this work useful, please cite:
+
+```
+@ARTICLE{2019arXiv190406022S,
+       author = {{Sahu}, Gaurav},
+        title = "{Multimodal Speech Emotion Recognition and Ambiguity Resolution}",
+      journal = {arXiv e-prints},
+     keywords = {Computer Science - Machine Learning, Computer Science - Computation and Language, Statistics - Machine Learning},
+         year = "2019",
+        month = "Apr",
+          eid = {arXiv:1904.06022},
+        pages = {arXiv:1904.06022},
+archivePrefix = {arXiv},
+       eprint = {1904.06022},
+ primaryClass = {cs.LG},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019arXiv190406022S},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+```
