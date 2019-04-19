@@ -1,7 +1,7 @@
-# speech-emotion-recognition
+# Multimodal Speech Emotion Recognition and Ambiuity Resolution
 
 ## Overview
-Identifying emotion from speech is a non-trivial task pertaining to the ambiguous definition of emotion itself. In this work, we formalize compare performance of two categories of models. For both types of models, we extract some hand-crafted features from a given audio signal.
+Identifying emotion from speech is a non-trivial task pertaining to the ambiguous definition of emotion itself. In this work, we build light-weight multimodal machine learning models and compare it against the heavier and less interpretable deep learning counterparts. For both types of models, we use hand-crafted features from a given audio signal. Our experiments show that the light-weight models are comparable to the deep learning baselines and even outperform them in some cases, achieving state-of-the-art performance on the IEMOCAP dataset.
 
 The hand-crafted feature vectors obtained are used to train two types of models:
 
