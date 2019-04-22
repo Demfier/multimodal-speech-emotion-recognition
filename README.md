@@ -96,19 +96,10 @@ For more details, please refer to the [report](https://arxiv.org/abs/1904.06022)
 If you find this work useful, please cite:
 
 ```
-@ARTICLE{2019arXiv190406022S,
-       author = {{Sahu}, Gaurav},
-        title = "{Multimodal Speech Emotion Recognition and Ambiguity Resolution}",
-      journal = {arXiv e-prints},
-     keywords = {Computer Science - Machine Learning, Computer Science - Computation and Language, Statistics - Machine Learning},
-         year = "2019",
-        month = "Apr",
-          eid = {arXiv:1904.06022},
-        pages = {arXiv:1904.06022},
-archivePrefix = {arXiv},
-       eprint = {1904.06022},
- primaryClass = {cs.LG},
-       adsurl = {https://ui.adsabs.harvard.edu/abs/2019arXiv190406022S},
-      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+@article{sahu2019multimodal,
+  title={Multimodal Speech Emotion Recognition and Ambiguity Resolution},
+  author={Sahu, Gaurav},
+  journal={arXiv preprint arXiv:1904.06022},
+  year={2019}
 }
 ```
