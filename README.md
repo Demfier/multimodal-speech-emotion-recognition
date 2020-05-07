@@ -23,17 +23,20 @@ All the experiments have been tested using the following libraries:
 - pandas==0.24.1
 - librosa==0.6.3
 
-## Instructions
-1. Run `1_extract_emotion_labels.ipynb` to extract labels from transriptions and compile other required data into a csv.
-2. Run `2_build_audio_vectors.ipynb` to build vectors from the original wav files and save into a pickle file
-3. Run `3_extract_audio_features.ipynb` to extract 8-dimensional audio feature vectors for the audio vectors
-4. Run `4_prepare_data.ipynb` to preprocess and prepare audio + video data for experiments
-5. It is recommended to train `LSTMClassifier` before running any other experiments for easy comparsion with other models later on:
-  - Change `config.py` for any of the experiment settings (`s2e/t2e/combined`) if you want
-  - Run `python lstm_classifier.py` from the corresponding experiment mode's folder inside `lstm_classifier` to train an LSTM classifier for that respective mode
-6. Run `5_audio_classification.ipynb` to train ML classifiers for audio
-7. Run `5.1_sentence_classification.ipynb` to train ML classifiers for text
-8. Run `5.2_combined_classification.ipynb` to train ML classifiers for audio+text
+## Instructions to run the code
+1. Clone this repository by running `git clone git@github.com:Demfier/multimodal-speech-emotion-recognition`.
+2. Go to the root directory of this project by running `cd multimodal-speech-emotion-recognition/` in your terminal.
+3. Start a jupyter notebook by running `jupyter notebook` from the root of this project.
+4. Run `1_extract_emotion_labels.ipynb` to extract labels from transriptions and compile other required data into a csv.
+5. Run `2_build_audio_vectors.ipynb` to build vectors from the original wav files and save into a pickle file
+6. Run `3_extract_audio_features.ipynb` to extract 8-dimensional audio feature vectors for the audio vectors
+7. Run `4_prepare_data.ipynb` to preprocess and prepare audio + video data for experiments
+8. It is recommended to train `LSTMClassifier` before running any other experiments for easy comparsion with other models later on:
+  - Change `config.py` for any of the experiment settings. For instance, if you want to train a speech2emotion classifier, make necessary changes to `lstm_classifier/s2e/config.py`. Similar procedure follows for training text2emotion (`t2e`) and text+speech2emotion (`combined`) classifiers.
+  - Run `python lstm_classifier.py` from `lstm_classifier/{exp_mode}` to train an LSTM classifier for the respective experiment mode (possible values of `exp_mode: s2e/t2e/combined`)
+9. Run `5_audio_classification.ipynb` to train ML classifiers for audio
+10. Run `5.1_sentence_classification.ipynb` to train ML classifiers for text
+11. Run `5.2_combined_classification.ipynb` to train ML classifiers for audio+text
 
 **Note:** Make sure to include correct model paths in the notebooks as not everything is relative right now and it needs some refactoring
 
