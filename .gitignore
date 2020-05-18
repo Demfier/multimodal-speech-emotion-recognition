@@ -4,3 +4,4 @@
 *.txt
 *.wav
 data/*
+*.pkl
