@@ -1,7 +1,7 @@
 import torch
 import pickle
 import gensim
-from create_vocab import create_vocab
+from create_vocab import Vocabulary, create_vocab
 
 model_config = {
     'gpu': 1,
