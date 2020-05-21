@@ -23,6 +23,8 @@ All the experiments have been tested using the following libraries:
 - pandas==0.24.1
 - librosa==0.6.3
 
+To avoid conflicts, it is recommended to setup a new python virtual environment to install these libraries. Once the env is setup, run `pip install -r requirements.txt` to install the dependencies.
+
 ## Instructions to run the code
 1. Clone this repository by running `git clone git@github.com:Demfier/multimodal-speech-emotion-recognition`.
 2. Go to the root directory of this project by running `cd multimodal-speech-emotion-recognition/` in your terminal.
