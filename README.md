@@ -31,7 +31,7 @@ To avoid conflicts, it is recommended to setup a new python virtual environment 
 3. Start a jupyter notebook by running `jupyter notebook` from the root of this project.
 4. Run `1_extract_emotion_labels.ipynb` to extract labels from transriptions and compile other required data into a csv.
 5. Run `2_build_audio_vectors.ipynb` to build vectors from the original wav files and save into a pickle file
-6. Run `3_extract_audio_features.ipynb` to extract 8-dimensional audio feature vectors for the audio vectors
+6. Run `3_extract_audio_features.ipynb` to extract 8-dimensional audio feature vectors for the audio vectors (According to the librosa change log for .7.0 >>(Root mean square error (rmse) has been renamed to rms))
 7. Run `4_prepare_data.ipynb` to preprocess and prepare audio + video data for experiments
 8. It is recommended to train `LSTMClassifier` before running any other experiments for easy comparsion with other models later on:
   - Change `config.py` for any of the experiment settings. For instance, if you want to train a speech2emotion classifier, make necessary changes to `lstm_classifier/s2e/config.py`. Similar procedure follows for training text2emotion (`t2e`) and text+speech2emotion (`combined`) classifiers.
