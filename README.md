@@ -21,7 +21,7 @@ All the experiments have been tested using the following libraries:
 - numpy==1.16.2
 - jupyter==1.0.0
 - pandas==0.24.1
-- librosa==0.6.3
+- librosa==0.7.0
 
 To avoid conflicts, it is recommended to setup a new python virtual environment to install these libraries. Once the env is setup, run `pip install -r requirements.txt` to install the dependencies.
 
