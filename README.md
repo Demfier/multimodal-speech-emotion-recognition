@@ -42,6 +42,8 @@ To avoid conflicts, it is recommended to setup a new python virtual environment 
 
 **Note:** Make sure to include correct model paths in the notebooks as not everything is relative right now and it needs some refactoring
 
+**UPDATE**: You can access the preprocessed data files here to skip the steps 4-7: https://www.dropbox.com/scl/fo/jdzz2y9nngw9rxsbz9vyj/h?rlkey=bji7zcqclusagzfwa7alm59hx&dl=0
+
 ## Results
 Accuracy, F-score, Precision and Recall has been reported for the different experiments.
 
