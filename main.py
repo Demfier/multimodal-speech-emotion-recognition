@@ -158,8 +158,8 @@ def extract_audio_features():
                 df_features = df_features.append(pd.DataFrame(
                     feature_list, index=columns).transpose(),
                     ignore_index=True)
-            except:
-                print('Some exception occured')
+            except Exception as e:
+                print('Some exception occurred: {}'.format(e)
 
     df_features.to_csv('data/pre-processed/audio_features.csv', index=False)
 
