@@ -159,7 +159,7 @@ def extract_audio_features():
                     feature_list, index=columns).transpose(),
                     ignore_index=True)
             except Exception as e:
-                print('Some exception occurred: {}'.format(e)
+                print('Some exception occurred: {}'.format(e))
 
     df_features.to_csv('data/pre-processed/audio_features.csv', index=False)
 
