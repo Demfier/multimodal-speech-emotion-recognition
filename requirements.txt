@@ -1,6 +1,6 @@
 xgboost==0.82
 flask
-numpy==1.16.2
+numpy==1.22.0
 scikit-learn==0.20.3
 scipy==1.4.1
 pandas
