@@ -2,6 +2,6 @@ xgboost==0.82
 flask
 numpy==1.16.2
 scikit-learn==0.20.3
-scipy==1.4.1
+scipy==1.10.0
 pandas
 librosa
